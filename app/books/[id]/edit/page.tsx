@@ -62,19 +62,31 @@ export default function EditBookPage() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Unable to update book");
-      }
+      const responseData = await response.json();
 
-      router.push("/books");
-    } catch (error) {
-      setError(
-        error instanceof Error ? error.message : "Something went wrong"
+    if (!response.ok) {
+      console.error("Update failed:", responseData);
+
+      const validationMessage = responseData.errors
+        ?.map((issue: { message: string }) => issue.message)
+        .join(", ");
+
+      throw new Error(
+        validationMessage ||
+          responseData.message ||
+          "Unable to update book"
       );
-    } finally {
-      setSaving(false);
     }
-  }
+
+        router.push("/books");
+      } catch (error) {
+        setError(
+          error instanceof Error ? error.message : "Something went wrong"
+        );
+      } finally {
+        setSaving(false);
+      }
+    }
 
   if (loading) {
     return <main className="p-8">Loading book...</main>;

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { bookSchema } from "@/lib/validations/book";
 
 type RouteContext = {
   params: Promise<{ id: string }>;
@@ -51,7 +52,6 @@ export async function PATCH(
   try {
     const { id } = await context.params;
     const bookId = Number(id);
-    const body = await request.json();
 
     if (Number.isNaN(bookId)) {
       return NextResponse.json(
@@ -60,18 +60,25 @@ export async function PATCH(
       );
     }
 
-    if (!body.title || !body.author) {
+    const body = await request.json();
+
+    const result = bookSchema.safeParse(body);
+
+    if (!result.success) {
       return NextResponse.json(
-        { message: "Title and author are required" },
+        {
+          message: "Invalid book data",
+          errors: result.error.issues,
+        },
         { status: 400 }
       );
     }
 
     const book = await prisma.book.update({
-    where: {
+      where: {
         id: bookId,
-    },
-    data: result.data,
+      },
+      data: result.data,
     });
 
     return NextResponse.json(book);
@@ -79,7 +86,13 @@ export async function PATCH(
     console.error("PATCH /api/books/:id failed:", error);
 
     return NextResponse.json(
-      { message: "Unable to update book" },
+      {
+        message: "Unable to update book",
+        error:
+          error instanceof Error
+            ? error.message
+            : String(error),
+      },
       { status: 500 }
     );
   }

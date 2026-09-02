@@ -118,13 +118,6 @@ export default function BooksPage() {
     <main className="mx-auto max-w-4xl p-8">
     <div className="mb-6 flex items-center justify-between">
     <h1 className="text-3xl font-bold">My Library</h1>
-
-    <Link
-        href="/books/new"
-        className="rounded bg-black px-4 py-2 text-white"
-    >
-        Add Book
-    </Link>
     </div>
 
     <section className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
