@@ -152,13 +152,14 @@ export default function BookForm({
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={saving}
-        className="rounded-lg bg-emerald-700 px-5 py-3 font-medium text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {saving ? "Saving..." : submitLabel}
-      </button>
+      <div className="flex items-center justify-between gap-3">
+        <button
+            type="submit"
+            disabled={saving}
+            className="rounded-lg bg-emerald-700 px-5 py-3 font-medium text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+            {saving ? "Saving..." : submitLabel}
+        </button>
 
         <Link
             href="/books"
@@ -166,6 +167,7 @@ export default function BookForm({
         >
             Back
         </Link>
+        </div>
     </form>
   );
 }

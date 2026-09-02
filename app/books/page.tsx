@@ -132,7 +132,6 @@ export default function BooksPage() {
   return (
     <main className="mx-auto max-w-4xl p-8">
     <div className="mb-6 flex items-center justify-between">
-    <h1 className="text-3xl font-bold">My Library</h1>
     </div>
 
     <section className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
