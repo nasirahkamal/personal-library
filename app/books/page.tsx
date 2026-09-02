@@ -198,12 +198,12 @@ export default function BooksPage() {
                 <p className="mt-1 text-gray-600">by {book.author}</p>
 
                 <span
-                  className={`mt-4 inline-block rounded-full px-3 py-1 text-xs font-medium ${
-                    statusDetails[book.status].className
-                  }`}
-                >
-                  {statusDetails[book.status].label}
-                </span>
+                className={`mt-4 inline-block rounded-full px-3 py-1 text-xs font-medium ${
+                  statusDetails[book.status].className
+                }`}
+              >
+                {statusDetails[book.status].label}
+              </span>
 
                 {book.rating !== null && (
                     <p className="mt-2">Rating: {book.rating}/5</p>
