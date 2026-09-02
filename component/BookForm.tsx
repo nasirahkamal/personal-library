@@ -160,13 +160,12 @@ export default function BookForm({
         {saving ? "Saving..." : submitLabel}
       </button>
 
-      <button
-        type="submit"
-        disabled={saving}
-        className="rounded-lg bg-emerald-700 px-5 py-3 font-medium text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50"
+        <Link
+            href="/books"
+            className="rounded-lg border border-stone-300 bg-white px-5 py-3 font-medium text-stone-700 hover:bg-stone-100"
         >
-        {saving ? "Saving..." : submitLabel}
-        </button>
+            Back
+        </Link>
     </form>
   );
 }
