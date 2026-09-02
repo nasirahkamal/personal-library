@@ -14,6 +14,21 @@ type Book = {
   notes: string | null;
 };
 
+const statusDetails = {
+  WANT_TO_READ: {
+    label: "Want to Read",
+    className: "bg-amber-100 text-amber-800",
+  },
+  READING: {
+    label: "Reading",
+    className: "bg-blue-100 text-blue-800",
+  },
+  FINISHED: {
+    label: "Finished",
+    className: "bg-emerald-100 text-emerald-800",
+  },
+};
+
 export default function BooksPage() {
     const [books, setBooks] = useState<Book[]>([]);
     const [loading, setLoading] = useState(true);
@@ -182,9 +197,13 @@ export default function BooksPage() {
 
                 <p className="mt-1 text-gray-600">by {book.author}</p>
 
-                <p className="mt-4 text-sm">
-                    Status: {book.status.replaceAll("_", " ")}
-                </p>
+                <span
+                  className={`mt-4 inline-block rounded-full px-3 py-1 text-xs font-medium ${
+                    statusDetails[book.status].className
+                  }`}
+                >
+                  {statusDetails[book.status].label}
+                </span>
 
                 {book.rating !== null && (
                     <p className="mt-2">Rating: {book.rating}/5</p>
