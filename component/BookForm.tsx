@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 
 export type BookFormValues = {
   title: string;
@@ -158,6 +159,14 @@ export default function BookForm({
       >
         {saving ? "Saving..." : submitLabel}
       </button>
+
+      <button
+        type="submit"
+        disabled={saving}
+        className="rounded-lg bg-emerald-700 px-5 py-3 font-medium text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+        {saving ? "Saving..." : submitLabel}
+        </button>
     </form>
   );
 }

@@ -29,12 +29,6 @@ export default function RootLayout({
             </Link>
 
             <div className="flex items-center gap-4">
-              <Link
-                href="/books"
-                className="text-sm text-stone-600 hover:text-stone-950"
-              >
-                Books
-              </Link>
 
               <Link
                 href="/books/new"
